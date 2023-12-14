@@ -174,7 +174,7 @@ export const Responder = {
                         if (CONFIG.error.form) {
                             $.each(CONFIG.error.form, function (name, row) {
                                 let holder = {},
-                                obj = ((app?.data?.form?.form?.length > 0) ? Responder.data.form.form.find('[name="'+name+'"]') : $('[name="'+name+'"]')),
+                                obj = ((Responder?.data?.form?.form?.length > 0) ? Responder.data.form.form.find('[name="'+name+'"]') : $('[name="'+name+'"]')),
                                 get = obj.get(0);
 
                                 if (get !== undefined) {

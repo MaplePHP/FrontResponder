@@ -1,6 +1,6 @@
 {
   "name": "frontresponder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A core javascript library for MaplePHP.",
   "directories": {
     "src": "src"
@@ -16,7 +16,8 @@
   "author": "Daniel Ronkainen",
   "license": "Apache-2.0",
   "dependencies": {
-    "stratox": "^2.0.0",
-    "stratoxdom": "^1.0.0"
+    "stratox": "^2.0.2",
+    "stratoxdom": "^1.0.0",
+    "stratoxcomponents": "^1.0.0"
   }
 }
