@@ -1,12 +1,19 @@
-import { StratoxDom as $ } from '../../node_modules/stratoxdom/src/StratoxDom.js';
-import { Stratox } from '../../node_modules/stratox/src/Stratox.js';
+import { StratoxDom as $ } from '../../stratoxdom/src/StratoxDom.js';
+import { Stratox } from '../../stratox/src/Stratox.js';
 
 export const Responder = {
     init: function (settings) {
         Responder.config = {
             lang: "sv",
             template: {
-                directory: "../../../resources/views/jviews/"
+                cache: false,
+                directory: "../../../resources/views/jviews/",
+                handlers: {
+                    //fields: StratoxTemplate, // Not required (se bellow)
+                    helper: function() {
+                        return $;
+                    }
+                }
             },
             navigation: {
                 container: $("#header"),
@@ -23,18 +30,6 @@ export const Responder = {
                 500: "500 Internal Server Error, try agin later",
                 503: "503 Service Unavailable"
             },
-            request: {
-                error: function (json, status) {
-                    $("#loading").css("display", "none");
-                    Responder.responseError(json, status);
-                    Responder.getResponder();
-                },
-                complete: function (json, myForm, e) {
-                    $("#loading").css("display", "none");
-                    $.extend(CONFIG, json);
-                    Responder.getResponder();
-                }
-            },
             responder: {
                 isReady: false,
                 ready: function (data) {
@@ -45,6 +40,7 @@ export const Responder = {
         };
 
         $.extend(Responder.config, settings);
+
 
         Responder.data = {
             views: {},
@@ -257,24 +253,6 @@ export const Responder = {
         return false;
 
     /**
-     * Resonse/ajax/xhr error callback function (e.g. Responder.conifg.error)
-     * @param  object json
-     * @param  int status HTTP header request status
-     * @return void
-     */
-    }, responseError: function (json, status) {
-        if (status !== 200) {
-            let phrase = (Responder.config.phrases[status]) ? Responder.config.phrases[status] : Responder.config.phrases[0];
-            $.extend(CONFIG, {
-                status: 2,
-                message: phrase
-            });
-        } else {
-            $.extend(CONFIG, json);
-        }
-
-
-    /**
      * The apps ajax response
      * @param  {object} settings Config
      * @param  {callable} success  success callback
@@ -314,3 +292,5 @@ export const Responder = {
         return inst;
     }
 };
+
+if(typeof CONFIG !== "object") var CONFIG = {};

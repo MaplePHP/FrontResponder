@@ -1,5 +1,5 @@
 {
-  "name": "@wazabii/frontresponder",
+  "name": "frontresponder",
   "version": "1.0.0",
   "description": "A core javascript library for MaplePHP.",
   "directories": {
