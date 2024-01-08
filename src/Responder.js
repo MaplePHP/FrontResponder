@@ -61,7 +61,7 @@ export const Responder = {
 
         Responder.getResponder();
 
-        $(".domer-get-btn").click(function (e) {
+        $(".maple-get-btn").click(function (e) {
             e.preventDefault();
             Responder.resetConfigViews();
             let btn = $(this), url = btn.data("href"), sendConfig = btn.data("config");
