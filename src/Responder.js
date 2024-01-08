@@ -32,6 +32,8 @@ export const Responder = {
             },
             responder: {
                 isReady: false,
+                setup: function (config) {
+                },
                 ready: function (data) {
                 },
                 update: function (data) {
@@ -40,7 +42,6 @@ export const Responder = {
         };
 
         $.extend(Responder.config, settings);
-
 
         Responder.data = {
             views: {},
@@ -51,6 +52,9 @@ export const Responder = {
         };
 
         Stratox.setConfigs(Responder.config.template);
+        if(typeof Responder.config.responder.setup === "function") {
+            Responder.config.responder.setup(Responder.config);
+        }
         return this;
 
     }, setup: function () {
@@ -292,4 +296,3 @@ export const Responder = {
         return inst;
     }
 };
-//if(typeof CONFIG !== "object") var CONFIG = {};
