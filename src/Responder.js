@@ -292,5 +292,4 @@ export const Responder = {
         return inst;
     }
 };
-
-if(typeof CONFIG !== "object") var CONFIG = {};
+//if(typeof CONFIG !== "object") var CONFIG = {};
